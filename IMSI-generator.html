@@ -1,0 +1,109 @@
+<!--Tool: T-Mobile ICCID TO IMSI Converter-->
+<!--Version: 1.0-->
+<!--Author: Sergey Mesheryakov-->
+<!--Contact: Sergey(DOT)mesheryakov(AT)T-mobile(DOT)com-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IMSI Generator</title>
+    <style>
+        body{
+            width: 100%;
+            box-sizing: border-box;
+
+        }
+        #wrapper, #button-wrapper{
+            width: 25.0em;
+            margin: 0 auto;
+        }
+        input[type="text"]{
+            padding: 0.25em;
+            position: relative;
+            height: 1.0em;
+            width: 12em;
+            float: left;
+            font-size: 2em;
+            margin-top: 0.5em;
+            clear: both;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            border: 1px solid royalblue;
+        }
+        input[type="button"]{
+            position: relative;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            background: royalblue;
+            height: 2.0em;
+            margin-top: 1em;
+            margin-right: 0;
+            font-size: 1em;
+            width: 50%;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            border: none;
+        }
+
+        h2{
+            text-align: center;
+        }
+
+        #submit{
+            float: left;
+        }
+
+        #clear{
+            float: rigth;
+        }
+
+        #submit:hover,#clear:hover{
+            background: darkblue;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <h2>Convert T-Mobile ICCID to IMSI</h2>
+    <input id="iccid" type="text" placeholder="Enter ICCID here">
+    <input id="imsi" type="text" placeholder="IMSI">
+    <div id="button-wrapper">
+        <input id="submit" type="button" value="Submit">
+        <input id="clear" type="button" value="Clear">
+    </div>
+
+</div>
+<script type="text/javascript">
+        (function() {
+            var convert = function() {
+                try {
+                    var str1 = document.getElementById("iccid").value;
+                    str1 = str1.trim();
+                    document.getElementById("iccid").value = str1;
+                    var str2 = "310";
+                    if (str1 !== "" && str1.length === 19) {
+                        str1 = str1.substring(4, 18);
+                        var res = str2.concat(str1.substring(0, 5), str1.substring(7, 14));
+                        document.getElementById("imsi").value = res;
+                        console.log("IMSI: " + res);
+                    }
+                } catch(error){
+                    console.log("Convert method error: " + error);
+                }
+            };
+            try {
+                document.getElementById("submit").addEventListener("click", convert);
+                document.getElementById("clear").addEventListener("click", function () {
+                    document.getElementById("iccid").value = "";
+                    document.getElementById("imsi").value = "";
+                });
+            }catch(error){
+                console.log("listener error: " + error);
+            }
+        })();
+</script>
+
+</body>
+</html>
