@@ -1,3 +1,4 @@
 # IMSI-Generator
-A simple GUI to convert an ICCID to IMSI 
-tbd
+A simple page application which converts ICCID to IMSI.
+
+Recommended browser: Google Chrome
